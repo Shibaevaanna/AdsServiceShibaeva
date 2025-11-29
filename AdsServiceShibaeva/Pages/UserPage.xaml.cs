@@ -15,6 +15,11 @@ namespace AdsServiceShibaeva.Pages
             NavigationService.Navigate(new UserAdsPage());
         }
 
+        private void CompletedAdsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserCompletedAdsPage());
+        }
+
         private void AddAdButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddEditAdPage());

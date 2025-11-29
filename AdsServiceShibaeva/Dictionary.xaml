@@ -59,7 +59,7 @@
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
 
-    <!-- Стиль для ComboBox -->
+   
     <Style x:Key="combobox" TargetType="ComboBox">
         <Setter Property="Height" Value="22"/>
         <Setter Property="Width" Value="150"/>

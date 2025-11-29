@@ -45,6 +45,11 @@ namespace AdsServiceShibaeva.Pages
             NavigationService.Navigate(new AddEditAdPage());
         }
 
+        private void CompletedButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserCompletedAdsPage());
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
@@ -60,6 +65,53 @@ namespace AdsServiceShibaeva.Pages
             else
             {
                 MessageBox.Show("Выберите объявление для редактирования");
+            }
+        }
+
+        private void CompleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedAd = AdsListView.SelectedItem as ads;
+            if (selectedAd != null)
+            {
+                if (MessageBox.Show("Вы уверены, что хотите завершить это объявление?",
+                    "Подтверждение завершения", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        var context = AdsServiceShibaevaEntities.GetContext();
+
+                        // Получаем ID статуса "Завершено"
+                        var completedStatusId = context.ad_statuses
+                            .Where(s => s.status_name == "Завершено")
+                            .Select(s => s.status_id)
+                            .FirstOrDefault();
+
+                        if (completedStatusId == 0)
+                        {
+                            MessageBox.Show("Статус 'Завершено' не найден в базе данных");
+                            return;
+                        }
+
+                        var adToUpdate = context.ads.Find(selectedAd.ad_id);
+                        if (adToUpdate != null)
+                        {
+                            adToUpdate.status_id = completedStatusId;
+                            adToUpdate.updated_date = DateTime.Now;
+                            context.SaveChanges();
+
+                            MessageBox.Show("Объявление завершено!");
+                            LoadUserAds(); // Обновляем список
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Ошибка при завершении объявления: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите объявление для завершения");
             }
         }
 

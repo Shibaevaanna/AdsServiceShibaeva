@@ -17,6 +17,8 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button x:Name="AddButton" Content="Добавить объявление" Style="{StaticResource button}" 
                     Width="150" Height="30" Click="AddButton_Click" Margin="5"/>
+            <Button x:Name="CompletedButton" Content="Завершенные" Style="{StaticResource button}" 
+                    Width="120" Height="30" Click="CompletedButton_Click" Margin="5"/>
             <Button x:Name="BackButton" Content="Назад" Style="{StaticResource button}" 
                     Width="80" Height="30" Click="BackButton_Click" Margin="5"/>
         </StackPanel>
@@ -38,6 +40,7 @@
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Редактировать" Click="EditMenuItem_Click"/>
+                    <MenuItem Header="Завершить" Click="CompleteMenuItem_Click"/>
                     <MenuItem Header="Удалить" Click="DeleteMenuItem_Click"/>
                 </ContextMenu>
             </ListView.ContextMenu>

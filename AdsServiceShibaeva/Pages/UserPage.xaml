@@ -11,8 +11,11 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
             <TextBlock Text="Личный кабинет" Style="{StaticResource header}" Margin="10" HorizontalAlignment="Center"/>
 
-            <Button x:Name="MyAdsButton" Content="Мои объявления" Style="{StaticResource button}" 
+            <Button x:Name="MyAdsButton" Content="Мои активные объявления" Style="{StaticResource button}" 
                     Height="40" Margin="10" Click="MyAdsButton_Click"/>
+
+            <Button x:Name="CompletedAdsButton" Content="Завершенные объявления" Style="{StaticResource button}" 
+                    Height="40" Margin="10" Click="CompletedAdsButton_Click"/>
 
             <Button x:Name="AddAdButton" Content="Добавить объявление" Style="{StaticResource button}" 
                     Height="40" Margin="10" Click="AddAdButton_Click"/>

@@ -33,12 +33,74 @@ namespace AdsServiceShibaeva.Pages
             _isEditMode = ad != null;
             CurrentAd = ad ?? new ads();
 
+            // Создаем тестовые данные если их нет
+            CreateTestData();
+
             Loaded += AddEditAdPage_Loaded;
         }
 
         private void AddEditAdPage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadComboBoxData();
+        }
+
+        private void CreateTestData()
+        {
+            try
+            {
+                var context = AdsServiceShibaevaEntities.GetContext();
+
+                // Проверяем, есть ли города
+                if (!context.cities.Any())
+                {
+                    context.cities.Add(new cities { city_name = "Москва" });
+                    context.cities.Add(new cities { city_name = "Санкт-Петербург" });
+                    context.cities.Add(new cities { city_name = "Новосибирск" });
+                    context.cities.Add(new cities { city_name = "Екатеринбург" });
+                    context.SaveChanges();
+                }
+
+                // Проверяем, есть ли категории
+                if (!context.categories.Any())
+                {
+                    context.categories.Add(new categories { category_name = "Электроника" });
+                    context.categories.Add(new categories { category_name = "Одежда" });
+                    context.categories.Add(new categories { category_name = "Мебель" });
+                    context.categories.Add(new categories { category_name = "Автомобили" });
+                    context.SaveChanges();
+                }
+
+                // Проверяем, есть ли типы
+                if (!context.ad_types.Any())
+                {
+                    context.ad_types.Add(new ad_types { type_name = "Продажа" });
+                    context.ad_types.Add(new ad_types { type_name = "Покупка" });
+                    context.ad_types.Add(new ad_types { type_name = "Аренда" });
+                    context.ad_types.Add(new ad_types { type_name = "Услуги" });
+                    context.SaveChanges();
+                }
+
+                // Проверяем, есть ли статусы
+                if (!context.ad_statuses.Any())
+                {
+                    context.ad_statuses.Add(new ad_statuses { status_name = "Активно" });
+                    context.ad_statuses.Add(new ad_statuses { status_name = "Завершено" });
+                    context.ad_statuses.Add(new ad_statuses { status_name = "Приостановлено" });
+                    context.SaveChanges();
+                }
+
+                // Проверяем, есть ли пользователи
+                if (!context.users.Any())
+                {
+                    context.users.Add(new users { user_login = "admin", user_password = "admin", created_date = DateTime.Now });
+                    context.users.Add(new users { user_login = "user", user_password = "123", created_date = DateTime.Now });
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка создания тестовых данных: {ex.Message}");
+            }
         }
 
         private void LoadComboBoxData()
@@ -105,10 +167,14 @@ namespace AdsServiceShibaeva.Pages
                 else
                 {
                     // Для редактирования устанавливаем текущие значения
-                    CityComboBox.SelectedValue = CurrentAd.city_id;
-                    CategoryComboBox.SelectedValue = CurrentAd.category_id;
-                    TypeComboBox.SelectedValue = CurrentAd.type_id;
-                    StatusComboBox.SelectedValue = CurrentAd.status_id;
+                    if (CurrentAd.city_id > 0)
+                        CityComboBox.SelectedValue = CurrentAd.city_id;
+                    if (CurrentAd.category_id > 0)
+                        CategoryComboBox.SelectedValue = CurrentAd.category_id;
+                    if (CurrentAd.type_id > 0)
+                        TypeComboBox.SelectedValue = CurrentAd.type_id;
+                    if (CurrentAd.status_id > 0)
+                        StatusComboBox.SelectedValue = CurrentAd.status_id;
                 }
             }
             catch (Exception ex)
@@ -133,10 +199,17 @@ namespace AdsServiceShibaeva.Pages
                     CurrentAd.created_date = DateTime.Now;
                     CurrentAd.updated_date = DateTime.Now;
 
-                    // Хардкод user_id (в реальном приложении брать из текущей сессии)
-                    CurrentAd.user_id = 1;
+                    // Хардкод user_id (берем первого пользователя из базы)
+                    var firstUser = context.users.FirstOrDefault();
+                    if (firstUser != null)
+                        CurrentAd.user_id = firstUser.user_id;
+                    else
+                        CurrentAd.user_id = 1; // fallback
 
                     context.ads.Add(CurrentAd);
+                    context.SaveChanges();
+
+                    MessageBox.Show("Объявление успешно добавлено!");
                 }
                 else
                 {
@@ -153,11 +226,12 @@ namespace AdsServiceShibaeva.Pages
                         existingAd.status_id = CurrentAd.status_id;
                         existingAd.post_date = CurrentAd.post_date;
                         existingAd.updated_date = DateTime.Now;
+
+                        context.SaveChanges();
+                        MessageBox.Show("Объявление успешно обновлено!");
                     }
                 }
 
-                context.SaveChanges();
-                MessageBox.Show(_isEditMode ? "Объявление успешно обновлено!" : "Объявление успешно добавлено!");
                 NavigationService.GoBack();
             }
             catch (Exception ex)
