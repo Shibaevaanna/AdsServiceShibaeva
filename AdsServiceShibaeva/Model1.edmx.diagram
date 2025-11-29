@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48eb7b930b3140b59b6050dd7f31d7f5" Name="Diagram1">
+        <EntityTypeShape EntityType="AdsServiceShibaevaModel.ad_statuses" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdsServiceShibaevaModel.ad_types" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdsServiceShibaevaModel.ads" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdsServiceShibaevaModel.categories" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdsServiceShibaevaModel.cities" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdsServiceShibaevaModel.users" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <AssociationConnector Association="AdsServiceShibaevaModel.FK__ads__status_id__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="AdsServiceShibaevaModel.FK__ads__type_id__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="AdsServiceShibaevaModel.FK__ads__category_id__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="AdsServiceShibaevaModel.FK__ads__city_id__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="AdsServiceShibaevaModel.FK__ads__user_id__5812160E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище AdsServiceShibaevaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ad_statuses">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="status_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ad_types">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="type_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ads">
+          <Key>
+            <PropertyRef Name="ad_id" />
+          </Key>
+          <Property Name="ad_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="ad_title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ad_description" Type="text" />
+          <Property Name="city_id" Type="int" Nullable="false" />
+          <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="post_date" Type="date" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="category_name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="int" Nullable="false" />
+          <Property Name="city_name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__ads__category_id__59FA5E80">
+          <End Role="categories" Type="Self.categories" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ads__city_id__59063A47">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ads__status_id__5BE2A6F2">
+          <End Role="ad_statuses" Type="Self.ad_statuses" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ad_statuses">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ads__type_id__5AEE82B9">
+          <End Role="ad_types" Type="Self.ad_types" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ad_types">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ads__user_id__5812160E">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AdsServiceShibaevaModelContainer">
+          <EntitySet Name="ad_statuses" EntityType="Self.ad_statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ad_types" EntityType="Self.ad_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ads" EntityType="Self.ads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ads__category_id__59FA5E80" Association="Self.FK__ads__category_id__59FA5E80">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ads__city_id__59063A47" Association="Self.FK__ads__city_id__59063A47">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ads__status_id__5BE2A6F2" Association="Self.FK__ads__status_id__5BE2A6F2">
+            <End Role="ad_statuses" EntitySet="ad_statuses" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ads__type_id__5AEE82B9" Association="Self.FK__ads__type_id__5AEE82B9">
+            <End Role="ad_types" EntitySet="ad_types" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ads__user_id__5812160E" Association="Self.FK__ads__user_id__5812160E">
+            <End Role="users" EntitySet="users" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdsServiceShibaevaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ad_statuses">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ads" Relationship="Self.FK__ads__status_id__5BE2A6F2" FromRole="ad_statuses" ToRole="ads" />
+        </EntityType>
+        <EntityType Name="ad_types">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <Property Name="type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ads" Relationship="Self.FK__ads__type_id__5AEE82B9" FromRole="ad_types" ToRole="ads" />
+        </EntityType>
+        <EntityType Name="ads">
+          <Key>
+            <PropertyRef Name="ad_id" />
+          </Key>
+          <Property Name="ad_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="ad_title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ad_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="city_id" Type="Int32" Nullable="false" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="post_date" Type="DateTime" Precision="0" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ad_statuses" Relationship="Self.FK__ads__status_id__5BE2A6F2" FromRole="ads" ToRole="ad_statuses" />
+          <NavigationProperty Name="ad_types" Relationship="Self.FK__ads__type_id__5AEE82B9" FromRole="ads" ToRole="ad_types" />
+          <NavigationProperty Name="categories" Relationship="Self.FK__ads__category_id__59FA5E80" FromRole="ads" ToRole="categories" />
+          <NavigationProperty Name="cities" Relationship="Self.FK__ads__city_id__59063A47" FromRole="ads" ToRole="cities" />
+          <NavigationProperty Name="users" Relationship="Self.FK__ads__user_id__5812160E" FromRole="ads" ToRole="users" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Name="category_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ads" Relationship="Self.FK__ads__category_id__59FA5E80" FromRole="categories" ToRole="ads" />
+        </EntityType>
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="Int32" Nullable="false" />
+          <Property Name="city_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ads" Relationship="Self.FK__ads__city_id__59063A47" FromRole="cities" ToRole="ads" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ads" Relationship="Self.FK__ads__user_id__5812160E" FromRole="users" ToRole="ads" />
+        </EntityType>
+        <Association Name="FK__ads__status_id__5BE2A6F2">
+          <End Role="ad_statuses" Type="Self.ad_statuses" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ad_statuses">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ads__type_id__5AEE82B9">
+          <End Role="ad_types" Type="Self.ad_types" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ad_types">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ads__category_id__59FA5E80">
+          <End Role="categories" Type="Self.categories" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ads__city_id__59063A47">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ads__user_id__5812160E">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="ads" Type="Self.ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="ads">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdsServiceShibaevaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ad_statuses" EntityType="Self.ad_statuses" />
+          <EntitySet Name="ad_types" EntityType="Self.ad_types" />
+          <EntitySet Name="ads" EntityType="Self.ads" />
+          <EntitySet Name="categories" EntityType="Self.categories" />
+          <EntitySet Name="cities" EntityType="Self.cities" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK__ads__status_id__5BE2A6F2" Association="Self.FK__ads__status_id__5BE2A6F2">
+            <End Role="ad_statuses" EntitySet="ad_statuses" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ads__type_id__5AEE82B9" Association="Self.FK__ads__type_id__5AEE82B9">
+            <End Role="ad_types" EntitySet="ad_types" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ads__category_id__59FA5E80" Association="Self.FK__ads__category_id__59FA5E80">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ads__city_id__59063A47" Association="Self.FK__ads__city_id__59063A47">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ads__user_id__5812160E" Association="Self.FK__ads__user_id__5812160E">
+            <End Role="users" EntitySet="users" />
+            <End Role="ads" EntitySet="ads" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AdsServiceShibaevaModelContainer" CdmEntityContainer="AdsServiceShibaevaEntities">
+          <EntitySetMapping Name="ad_statuses">
+            <EntityTypeMapping TypeName="AdsServiceShibaevaModel.ad_statuses">
+              <MappingFragment StoreEntitySet="ad_statuses">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="status_name" ColumnName="status_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ad_types">
+            <EntityTypeMapping TypeName="AdsServiceShibaevaModel.ad_types">
+              <MappingFragment StoreEntitySet="ad_types">
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ads">
+            <EntityTypeMapping TypeName="AdsServiceShibaevaModel.ads">
+              <MappingFragment StoreEntitySet="ads">
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ad_title" ColumnName="ad_title" />
+                <ScalarProperty Name="ad_description" ColumnName="ad_description" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="post_date" ColumnName="post_date" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="AdsServiceShibaevaModel.categories">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="AdsServiceShibaevaModel.cities">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="AdsServiceShibaevaModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_login" ColumnName="user_login" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
