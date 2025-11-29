@@ -8,11 +8,17 @@
       Title="Личный кабинет">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Добро пожаловать в личный кабинет!" Style="{StaticResource header}" Margin="10"/>
-            <TextBlock Text="Здесь будут ваши объявления и настройки" Style="{StaticResource text}" Margin="10"/>
-            <Button Content="Назад к объявлениям" Style="{StaticResource button}" 
-                    Click="BackButton_Click" Width="200" Height="30" Margin="10"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <TextBlock Text="Личный кабинет" Style="{StaticResource header}" Margin="10" HorizontalAlignment="Center"/>
+
+            <Button x:Name="MyAdsButton" Content="Мои объявления" Style="{StaticResource button}" 
+                    Height="40" Margin="10" Click="MyAdsButton_Click"/>
+
+            <Button x:Name="AddAdButton" Content="Добавить объявление" Style="{StaticResource button}" 
+                    Height="40" Margin="10" Click="AddAdButton_Click"/>
+
+            <Button x:Name="BackButton" Content="Назад к объявлениям" Style="{StaticResource button}" 
+                    Height="40" Margin="10" Click="BackButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

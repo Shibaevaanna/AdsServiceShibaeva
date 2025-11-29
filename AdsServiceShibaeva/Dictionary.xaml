@@ -35,6 +35,8 @@
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Margin" Value="16,0,16,0"/>
         <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
     <Style TargetType="TextBox" x:Key="textbox">
@@ -42,6 +44,9 @@
         <Setter Property="Width" Value="150"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderBrush" Value="#E0E0E0"/>
+        <Setter Property="BorderThickness" Value="1"/>
     </Style>
 
     <Style TargetType="PasswordBox" x:Key="passbox">
@@ -49,5 +54,21 @@
         <Setter Property="Width" Value="150"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderBrush" Value="#E0E0E0"/>
+        <Setter Property="BorderThickness" Value="1"/>
     </Style>
+
+    <!-- Стиль для ComboBox -->
+    <Style x:Key="combobox" TargetType="ComboBox">
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderBrush" Value="#E0E0E0"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="White"/>
+    </Style>
+
 </ResourceDictionary>
