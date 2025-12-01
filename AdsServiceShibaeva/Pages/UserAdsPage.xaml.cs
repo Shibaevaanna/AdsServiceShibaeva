@@ -18,7 +18,7 @@ namespace AdsServiceShibaeva.Pages
         {
             try
             {
-                // Хардкод user_id (в реальном приложении брать из текущей сессии)
+                
                 int currentUserId = 1;
 
                 var userAds = AdsServiceShibaevaEntities.GetContext().ads
@@ -31,7 +31,7 @@ namespace AdsServiceShibaeva.Pages
 
                 AdsListView.ItemsSource = userAds;
 
-                // Показываем сообщение, если объявлений нет
+                
                 NoAdsText.Visibility = userAds.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
             }
             catch (Exception ex)
@@ -80,7 +80,7 @@ namespace AdsServiceShibaeva.Pages
                     {
                         var context = AdsServiceShibaevaEntities.GetContext();
 
-                        // Получаем ID статуса "Завершено"
+                        
                         var completedStatusId = context.ad_statuses
                             .Where(s => s.status_name == "Завершено")
                             .Select(s => s.status_id)
@@ -100,7 +100,7 @@ namespace AdsServiceShibaeva.Pages
                             context.SaveChanges();
 
                             MessageBox.Show("Объявление завершено!");
-                            LoadUserAds(); // Обновляем список
+                            LoadUserAds(); 
                         }
                     }
                     catch (Exception ex)
@@ -132,7 +132,7 @@ namespace AdsServiceShibaeva.Pages
                             context.ads.Remove(adToDelete);
                             context.SaveChanges();
                             MessageBox.Show("Объявление успешно удалено!");
-                            LoadUserAds(); // Обновляем список
+                            LoadUserAds(); 
                         }
                     }
                     catch (Exception ex)
@@ -147,7 +147,7 @@ namespace AdsServiceShibaeva.Pages
             }
         }
 
-        // Двойной клик для редактирования
+        
         private void AdsListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             EditMenuItem_Click(sender, e);

@@ -13,14 +13,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Панель управления -->
+        
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <TextBlock Text="Мои завершенные объявления" Style="{StaticResource header}" Margin="10"/>
             <Button x:Name="BackButton" Content="Назад" Style="{StaticResource button}" 
                     Width="80" Height="30" Click="BackButton_Click" Margin="10"/>
         </StackPanel>
 
-        <!-- Список завершенных объявлений -->
+        
         <ListView x:Name="CompletedAdsListView" Grid.Row="1" Margin="10">
             <ListView.View>
                 <GridView>
@@ -43,7 +43,7 @@
             </ListView.ContextMenu>
         </ListView>
 
-        <!-- Сообщение если нет завершенных объявлений -->
+        
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" x:Name="NoCompletedAdsPanel">
             <TextBlock Text="У вас нет завершенных объявлений" Style="{StaticResource header}" Margin="10"/>
             <TextBlock Text="Здесь будут отображаться объявления со статусом 'Завершено'" Style="{StaticResource ad_text}" Margin="10"/>

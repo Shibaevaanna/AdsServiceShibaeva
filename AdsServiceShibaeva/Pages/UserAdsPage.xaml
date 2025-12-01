@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Панель управления -->
+        
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button x:Name="AddButton" Content="Добавить объявление" Style="{StaticResource button}" 
                     Width="150" Height="30" Click="AddButton_Click" Margin="5"/>
@@ -23,7 +23,7 @@
                     Width="80" Height="30" Click="BackButton_Click" Margin="5"/>
         </StackPanel>
 
-        <!-- Список объявлений -->
+        
         <ListView x:Name="AdsListView" Grid.Row="1" Margin="10">
             <ListView.View>
                 <GridView>

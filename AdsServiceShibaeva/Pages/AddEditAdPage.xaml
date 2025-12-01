@@ -18,14 +18,14 @@
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <!-- Заголовок -->
+                
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Заголовок*" Style="{StaticResource text}" Width="150"/>
                     <TextBox x:Name="TitleTextBox" Width="300" Height="25" Text="{Binding CurrentAd.ad_title}"
                              VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </StackPanel>
 
-                <!-- Описание -->
+               
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Описание" Style="{StaticResource text}" Width="150"/>
                     <TextBox x:Name="DescriptionTextBox" Width="300" Height="60" 
@@ -33,14 +33,14 @@
                              VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </StackPanel>
 
-                <!-- Цена -->
+                
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Цена*" Style="{StaticResource text}" Width="150"/>
                     <TextBox x:Name="PriceTextBox" Width="300" Height="25" Text="{Binding CurrentAd.price}"
                              VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </StackPanel>
 
-                <!-- Город -->
+                
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Город*" Style="{StaticResource text}" Width="150"/>
                     <ComboBox x:Name="CityComboBox" Width="300" Height="25"
@@ -49,7 +49,7 @@
                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </StackPanel>
 
-                <!-- Категория -->
+               
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Категория*" Style="{StaticResource text}" Width="150"/>
                     <ComboBox x:Name="CategoryComboBox" Width="300" Height="25"
@@ -58,7 +58,7 @@
                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </StackPanel>
 
-                <!-- Тип объявления -->
+               
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Тип*" Style="{StaticResource text}" Width="150"/>
                     <ComboBox x:Name="TypeComboBox" Width="300" Height="25"
@@ -67,7 +67,7 @@
                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </StackPanel>
 
-                <!-- Статус -->
+                
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Статус*" Style="{StaticResource text}" Width="150"/>
                     <ComboBox x:Name="StatusComboBox" Width="300" Height="25"
@@ -76,7 +76,7 @@
                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </StackPanel>
 
-                <!-- Дата публикации -->
+                
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Дата публикации" Style="{StaticResource text}" Width="150"/>
                     <DatePicker x:Name="PostDatePicker" Width="300" Height="25" 
@@ -88,7 +88,7 @@
             </StackPanel>
         </ScrollViewer>
 
-        <!-- Кнопки -->
+        
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
             <Button x:Name="SaveButton" Content="Сохранить" Style="{StaticResource button}" 
                     Width="120" Height="30" Click="SaveButton_Click" Margin="10"/>

@@ -53,25 +53,25 @@ namespace AdsServiceShibaeva.Pages
                     .Include(a => a.ad_statuses)
                     .ToList();
 
-                // Фильтрация
+                
                 if (!string.IsNullOrWhiteSpace(titlefilter.Text))
                 {
                     currentAds = currentAds.Where(x => x.ad_title.ToLower().Contains(titlefilter.Text.ToLower())).ToList();
                 }
 
-                // Сортировка
+                
                 switch (sortcombobox.SelectedIndex)
                 {
-                    case 0: // По городу
+                    case 0: 
                         currentAds = currentAds.OrderBy(x => x.cities.city_name).ToList();
                         break;
-                    case 1: // По категории
+                    case 1: 
                         currentAds = currentAds.OrderBy(x => x.categories.category_name).ToList();
                         break;
-                    case 2: // По типу
+                    case 2: 
                         currentAds = currentAds.OrderBy(x => x.ad_types.type_name).ToList();
                         break;
-                    case 3: // По статусу
+                    case 3: 
                         currentAds = currentAds.OrderBy(x => x.ad_statuses.status_name).ToList();
                         break;
                     default:
@@ -83,7 +83,7 @@ namespace AdsServiceShibaeva.Pages
             }
             catch (Exception ex)
             {
-                // Обработка ошибки
+                
             }
         }
     }

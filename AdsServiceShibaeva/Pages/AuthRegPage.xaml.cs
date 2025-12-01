@@ -19,7 +19,7 @@ namespace AdsServiceShibaeva.Pages
                 return;
             }
 
-            // Хардкодные пользователи для тестирования
+            
             if (CheckHardcodedUser(logintextbox.Text, passwordbox.Password))
             {
                 MessageBox.Show("Успешный вход!");
@@ -27,7 +27,7 @@ namespace AdsServiceShibaeva.Pages
                 return;
             }
 
-            // Если хардкодные данные не подошли, проверяем базу данных
+            
             using (var db = new AdsServiceShibaevaEntities())
             {
                 var user = db.users.AsNoTracking().FirstOrDefault(u => u.user_login == logintextbox.Text && u.user_password == passwordbox.Password);
@@ -45,7 +45,7 @@ namespace AdsServiceShibaeva.Pages
 
         private bool CheckHardcodedUser(string login, string password)
         {
-            // Хардкодные пользователи
+            
             var hardcodedUsers = new[]
             {
                 new { Login = "admin", Password = "admin" },

@@ -33,7 +33,7 @@ namespace AdsServiceShibaeva.Pages
             _isEditMode = ad != null;
             CurrentAd = ad ?? new ads();
 
-            // Создаем тестовые данные если их нет
+            
             CreateTestData();
 
             Loaded += AddEditAdPage_Loaded;
@@ -50,7 +50,7 @@ namespace AdsServiceShibaeva.Pages
             {
                 var context = AdsServiceShibaevaEntities.GetContext();
 
-                // Проверяем, есть ли города
+               
                 if (!context.cities.Any())
                 {
                     context.cities.Add(new cities { city_name = "Москва" });
@@ -60,7 +60,7 @@ namespace AdsServiceShibaeva.Pages
                     context.SaveChanges();
                 }
 
-                // Проверяем, есть ли категории
+                
                 if (!context.categories.Any())
                 {
                     context.categories.Add(new categories { category_name = "Электроника" });
@@ -70,7 +70,7 @@ namespace AdsServiceShibaeva.Pages
                     context.SaveChanges();
                 }
 
-                // Проверяем, есть ли типы
+               
                 if (!context.ad_types.Any())
                 {
                     context.ad_types.Add(new ad_types { type_name = "Продажа" });
@@ -80,7 +80,7 @@ namespace AdsServiceShibaeva.Pages
                     context.SaveChanges();
                 }
 
-                // Проверяем, есть ли статусы
+                
                 if (!context.ad_statuses.Any())
                 {
                     context.ad_statuses.Add(new ad_statuses { status_name = "Активно" });
@@ -89,7 +89,7 @@ namespace AdsServiceShibaeva.Pages
                     context.SaveChanges();
                 }
 
-                // Проверяем, есть ли пользователи
+                
                 if (!context.users.Any())
                 {
                     context.users.Add(new users { user_login = "admin", user_password = "admin", created_date = DateTime.Now });
@@ -109,55 +109,55 @@ namespace AdsServiceShibaeva.Pages
             {
                 var context = AdsServiceShibaevaEntities.GetContext();
 
-                // Загружаем города
+                
                 var cities = context.cities.ToList();
                 CityComboBox.ItemsSource = cities;
                 Console.WriteLine($"Загружено городов: {cities.Count}");
 
-                // Загружаем категории
+                
                 var categories = context.categories.ToList();
                 CategoryComboBox.ItemsSource = categories;
                 Console.WriteLine($"Загружено категорий: {categories.Count}");
 
-                // Загружаем типы объявлений
+               
                 var types = context.ad_types.ToList();
                 TypeComboBox.ItemsSource = types;
                 Console.WriteLine($"Загружено типов: {types.Count}");
 
-                // Загружаем статусы
+                
                 var statuses = context.ad_statuses.ToList();
                 StatusComboBox.ItemsSource = statuses;
                 Console.WriteLine($"Загружено статусов: {statuses.Count}");
 
-                // Устанавливаем значения по умолчанию для нового объявления
+                
                 if (!_isEditMode)
                 {
                     CurrentAd.post_date = DateTime.Now;
                     CurrentAd.created_date = DateTime.Now;
                     CurrentAd.price = 0;
 
-                    // Устанавливаем первый статус (обычно "Активно")
+                    
                     if (statuses.Count > 0)
                     {
                         CurrentAd.status_id = statuses[0].status_id;
                         StatusComboBox.SelectedValue = statuses[0].status_id;
                     }
 
-                    // Устанавливаем первый город
+                    
                     if (cities.Count > 0)
                     {
                         CurrentAd.city_id = cities[0].city_id;
                         CityComboBox.SelectedValue = cities[0].city_id;
                     }
 
-                    // Устанавливаем первую категорию
+                    
                     if (categories.Count > 0)
                     {
                         CurrentAd.category_id = categories[0].category_id;
                         CategoryComboBox.SelectedValue = categories[0].category_id;
                     }
 
-                    // Устанавливаем первый тип
+                   
                     if (types.Count > 0)
                     {
                         CurrentAd.type_id = types[0].type_id;
@@ -166,7 +166,7 @@ namespace AdsServiceShibaeva.Pages
                 }
                 else
                 {
-                    // Для редактирования устанавливаем текущие значения
+                   
                     if (CurrentAd.city_id > 0)
                         CityComboBox.SelectedValue = CurrentAd.city_id;
                     if (CurrentAd.category_id > 0)
@@ -195,16 +195,16 @@ namespace AdsServiceShibaeva.Pages
 
                 if (!_isEditMode)
                 {
-                    // Добавление нового объявления
+                    
                     CurrentAd.created_date = DateTime.Now;
                     CurrentAd.updated_date = DateTime.Now;
 
-                    // Хардкод user_id (берем первого пользователя из базы)
+                    
                     var firstUser = context.users.FirstOrDefault();
                     if (firstUser != null)
                         CurrentAd.user_id = firstUser.user_id;
                     else
-                        CurrentAd.user_id = 1; // fallback
+                        CurrentAd.user_id = 1; 
 
                     context.ads.Add(CurrentAd);
                     context.SaveChanges();
@@ -213,7 +213,7 @@ namespace AdsServiceShibaeva.Pages
                 }
                 else
                 {
-                    // Редактирование существующего
+                    
                     var existingAd = context.ads.Find(CurrentAd.ad_id);
                     if (existingAd != null)
                     {
